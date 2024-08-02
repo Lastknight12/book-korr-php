@@ -11,10 +11,9 @@
             "dest": "/api/assets.php?type=$1&file=$2"
         },
         {
-    "src": "/image/(.+)\\.(.+)$",
-    "dest": "/image/$1.$2"
-},
-
+            "src": "/images/(.*)$",
+            "dest": "/api/assets.php?type=images&file=$1"
+        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
