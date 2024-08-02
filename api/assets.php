@@ -1,13 +1,24 @@
 <?php
+// api/assets.php
+$types = ['css', 'js', 'images'];
+$type = $_GET['type'] ?? '';
+$file = $_GET['file'] ?? '';
 
-/**
- * Built assets aren't currently routeable via vercel-php
- * Manually route assets to be found
- */
-if ($_GET['type'] === 'css') {
-    header("Content-type: text/css; charset: UTF-8");
-    echo require __DIR__ . '/../css/' . basename($_GET['file']);
-} else if ($_GET['type'] === '*') {
-    header('Content-Type: application/javascript; charset: UTF-8');
-    echo require __DIR__ . '/../js/' . basename($_GET['file']);
+if (in_array($type, $types) && !empty($file)) {
+    $filePath = __DIR__ . "/assets/{$type}/{$file}";
+
+    if (file_exists($filePath)) {
+        $mimeType = mime_content_type($filePath);
+        header("Content-Type: {$mimeType}");
+        readfile($filePath);
+        exit;
+    } else {
+        http_response_code(404);
+        echo "File not found.";
+        exit;
+    }
+} else {
+    http_response_code(400);
+    echo "Invalid request.";
+    exit;
 }
