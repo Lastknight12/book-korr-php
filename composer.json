@@ -1,5 +1,7 @@
 {
   "require": {
     "php": ">=5.3.2"
-  }
+  },
+  "name": "book-korr",
+  "description": "book-korr-phpsite"
 }
