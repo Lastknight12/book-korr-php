@@ -212,7 +212,7 @@ return '
 <title>Литературный редактор Юлия Афонасьева</title>
 <meta name="description" content="Полный спектр услуг для писателей: корректирование и редактирование, синопсис и аннотация, рецензии, сопровождение в издательство" />
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-<link rel='stylesheet' href='../css/style.css?v=<?php echo $ver; ?>' type='text/css' media='all' />
+<link rel='stylesheet' href='css/style.css?v=<?php echo $ver; ?>' type='text/css' media='all' />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type='text/javascript' src='js/script.js?v=<?php echo $ver; ?>'></script>
 <script src="js/index.js" defer></script>
@@ -374,11 +374,12 @@ _tmr.push({id: "3480147", type: "pageView", start: (new Date()).getTime()});
         </nav>
     </div>
 
-    <div
-            
+    <img
+            alt="фото редактора"
             class="first-page-image"
-	    style="background-image: url('/images/image_first.jpg'); width: 100%; height: 200px;"
-            ></div>
+            loading="lazy"
+            src="./images/image_first.jpg"
+            >
 </section>
 <div class="line visible-mobile"></div>
 <section class="meet" id="meet">
@@ -396,8 +397,11 @@ _tmr.push({id: "3480147", type: "pageView", start: (new Date()).getTime()});
                 Веду редакторское сопровождение – консультирую писателей на всем творческом пути.</p>
         </div>
     </div>
-    <div
-            style="background-image: url('/images/avatar_1.jpg'); width: 100%; height: 200px;"></div>
+    <img
+            alt="второе фото редактора"
+            class="meet-image"
+            loading="lazy"
+            src="./images/image_second.jpg">
 </section>
 
 <div class="line visible-mobile"></div>
