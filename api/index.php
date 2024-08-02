@@ -397,11 +397,8 @@ _tmr.push({id: "3480147", type: "pageView", start: (new Date()).getTime()});
                 Веду редакторское сопровождение – консультирую писателей на всем творческом пути.</p>
         </div>
     </div>
-    <img
-            alt="второе фото редактора"
-            class="meet-image"
-            loading="lazy"
-            src="./images/image_second.jpg">
+    <div
+            style="background-image: url('/images/avatar_1.jpg'); width: 100%; height: 200px;"></div>
 </section>
 
 <div class="line visible-mobile"></div>
