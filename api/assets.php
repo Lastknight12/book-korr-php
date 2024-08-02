@@ -4,19 +4,14 @@
  * Built assets aren't currently routeable via vercel-php
  * Manually route assets to be found
  */
+if ($_SERVER['REQUEST_URI'] === '/image' && isset($_GET['file'])) {
+    $file = basename($_GET['file']);
+    $filePath = __DIR__ . '/../images/' . $file;
 
-$fileType = strtolower(pathinfo($_GET['file'], PATHINFO_EXTENSION));
-
-if ($_GET['type'] === 'css') {
-    header("Content-type: text/css; charset: UTF-8");
-    echo require __DIR__ . '/../css/' . basename($_GET['file']);
-} else if ($_GET['type'] === 'js') {
-    header('Content-Type: application/javascript; charset: UTF-8');
-    echo require __DIR__ . '/../js/' . basename($_GET['file']);
-} else if (in_array($fileType, ['jpg', 'jpeg', 'png', 'gif', 'svg'])) {
-    $filePath = __DIR__ . '/../images/' . basename($_GET['file']);
     if (file_exists($filePath)) {
-        switch ($fileType) {
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+
+        switch ($extension) {
             case 'jpg':
             case 'jpeg':
                 header('Content-Type: image/jpeg');
@@ -27,18 +22,43 @@ if ($_GET['type'] === 'css') {
             case 'gif':
                 header('Content-Type: image/gif');
                 break;
-            case 'svg':
-                header('Content-Type: image/svg+xml');
+            case 'webp':
+                header('Content-Type: image/webp');
                 break;
+            default:
+                header('HTTP/1.1 415 Unsupported Media Type');
+                echo 'Unsupported image type';
+                exit;
         }
-        echo file_get_contents($filePath);
+        
+        readfile($filePath); // Read and output the file
     } else {
-        // Return a 404 or another appropriate response if the image file is not found
-        header("HTTP/1.0 404 Not Found");
-        echo "Image file not found.";
+        header('HTTP/1.1 404 Not Found');
+        echo 'Image not found';
+    }
+} else if (isset($_GET['type']) && $_GET['type'] === 'css') {
+    header("Content-type: text/css; charset: UTF-8");
+    $file = basename($_GET['file']);
+    $filePath = __DIR__ . '/../css/' . $file;
+
+    if (file_exists($filePath)) {
+        readfile($filePath); // Read and output the file
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        echo 'CSS file not found';
+    }
+} else if (isset($_GET['type']) && $_GET['type'] === 'js') { // Changed from '*' to 'js' for consistency
+    header('Content-Type: application/javascript; charset: UTF-8');
+    $file = basename($_GET['file']);
+    $filePath = __DIR__ . '/../js/' . $file;
+
+    if (file_exists($filePath)) {
+        readfile($filePath); // Read and output the file
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        echo 'JavaScript file not found';
     }
 } else {
-    // Return a 404 or another appropriate response if file type is not supported
-    header("HTTP/1.0 404 Not Found");
-    echo "File not found.";
+    header('HTTP/1.1 400 Bad Request');
+    echo 'Invalid asset type';
 }
