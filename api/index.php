@@ -374,12 +374,11 @@ _tmr.push({id: "3480147", type: "pageView", start: (new Date()).getTime()});
         </nav>
     </div>
 
-    <img
-            alt="фото редактора"
+    <div
+            
             class="first-page-image"
-            loading="lazy"
-            src="/image/image_first.jpg"
-            >
+	    style="background-image: url('/images/image_first.jpg'); width: 100%; height: 200px;"
+            ></div>
 </section>
 <div class="line visible-mobile"></div>
 <section class="meet" id="meet">
