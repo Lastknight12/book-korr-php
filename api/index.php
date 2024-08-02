@@ -378,7 +378,7 @@ _tmr.push({id: "3480147", type: "pageView", start: (new Date()).getTime()});
             alt="фото редактора"
             class="first-page-image"
             loading="lazy"
-            src="/images/image_first.jpg"
+            src="/image/image_first.jpg"
             >
 </section>
 <div class="line visible-mobile"></div>
