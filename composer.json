@@ -3,5 +3,7 @@
     "php": ">=5.3.2"
   },
   "name": "composer/composer",
-  "description": "book-korr-phpsite"
+  "description": "book-korr-phpsite",
+  "license": "MIT",
+  "homepage": "https://l1ghttttt.github.io/book-korr-php/"
 }
